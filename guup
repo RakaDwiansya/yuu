@@ -1,0 +1,71 @@
+<!-- 
+Just replace your audio file's name with `file_example_MP3_700KB.mp3` given in below code.
+
+Refs:
+- https://stackoverflow.com/questions/29593733/i-want-to-stop-skip-30-seconds-on-audio-in-html
+- https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Cross-browser_audio_basics
+- https://www.w3schools.com/tags/ref_av_dom.asp
+-->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The audio element</h1>
+
+<p>Click on the play button to play a sound:</p>
+
+<audio controls id="player">
+  <source src="file_example_MP3_700KB.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<button type="button" onclick="playsong()">Play</button>
+    <button type="button" onclick="pausesong()">Pauza</button>
+    <button type="button" onclick="stopsong()">Stop</button>
+    <button type="button" onclick="forwardAudio()">Skip 30 seconds</button>
+
+<script>
+
+	window.onload = function(){
+
+		var timeForPlayer = 0;
+		
+		var player = document.getElementById( 'player' );
+
+		console.log( player.duration );
+
+		player.addEventListener( "timeupdate", function() {
+
+		  console.log( player.currentTime );	
+		});
+
+	}
+
+
+	function playsong() {
+	    var player = document.getElementById('player');
+	    player.play();
+	}
+
+
+	function pausesong() {
+	    var player = document.getElementById('player');
+	    player.pause();
+	}
+
+	function stopsong() {
+	    var player = document.getElementById('player');
+	    player.pause();
+	    player.currentTime = 0;/**tried also with audio.currentTime here. Didn't worked **/
+	}
+
+	function forwardAudio() {
+	    var player = document.getElementById('player');
+	    player.currentTime += 3.0; /**tried also with audio.currentTime here. Didn't worked **/
+
+	}
+</script>
+
+</body>
+</html>
